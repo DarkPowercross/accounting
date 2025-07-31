@@ -1,6 +1,7 @@
 import cmd
 import sys
 import os
+from internal.usercontrol.userclass import User
 
 class BaseCLI(cmd.Cmd):
     prompt = '>> '

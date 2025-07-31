@@ -10,6 +10,8 @@ class Database:
             raise ValueError("Missing DB_NAME or DB_PATH in environment variables")
         
         self.db_path = os.path.join(self.db_folder, self.db_name)
+        if not os.path.isfile(self.db_path):
+            self.load_schema()
         
         self.connection = None
         self.cursor = None
@@ -42,7 +44,7 @@ class Database:
 
 
     def import_schema(self):
-        schema_dir = "database/schema/"
+        schema_dir = "internal/database/schema/"
         files = sorted(os.listdir(schema_dir))
         schema = ""
 
